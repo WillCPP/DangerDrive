@@ -14,6 +14,12 @@ def find_address(address):
     long = x["results"][0]["geometry"]["location"]["lng"]
     return (lat, long)
 
-find_address("2050 Stedman Lane Beavercreek OH 45431")
 
-   
+def find_ip():
+    r = requests.get('http://ip-api.com/json')
+    x = json.loads(r.text)
+    lat = x["lat"]
+    long = x["lon"]
+    return (lat, long)
+
+print(find_ip())
