@@ -1,6 +1,5 @@
 #danger drive - directions
 
-#Google Maps Javascript API Key: AIzaSyDZWXeInvVOUuIe0xLKA65ygwHSRuxayxU
 #Google Maps Directions API Key: AIzaSyAJiJ0E_yddGhKshaTTcbSE8HQmFyoHs4Y
 
 import requests
