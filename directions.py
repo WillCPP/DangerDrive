@@ -1,6 +1,10 @@
-#danger drive - directions
+#
+#  directions.py
+#  Danger Drive
+#  
+#  Created by Madeline Eckhart, William Cupp, and Sean Hearne on 4/12/18.
+#  Copyright © 2018 University of Cincinnati. All rights reserved.
 
-#Google Maps Directions API Key: AIzaSyAJiJ0E_yddGhKshaTTcbSE8HQmFyoHs4Y
 
 import requests
 def directions(x1, y1, x2, y2):

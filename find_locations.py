@@ -1,7 +1,10 @@
-#danger drive - find locations
+#
+#  find_locations.py
+#  Danger Drive
+#
+#  Created by Madeline Eckhart, William Cupp, and Sean Hearne on 4/12/18.
+#  Copyright © 2018 University of Cincinnati. All rights reserved.
 
-#Google Maps Javascript API Key: AIzaSyDZWXeInvVOUuIe0xLKA65ygwHSRuxayxU
-#Google Maps 
 
 import requests
 import json
