@@ -8,8 +8,8 @@
 
 import requests
 import json
+from keys import key_java
 def find_address(address):
-    key_java = "AIzaSyDZWXeInvVOUuIe0xLKA65ygwHSRuxayxU"
     add = address.replace(' ', '+')
     r = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address='+add+'&key='+ key_java)
     x = json.loads(r.text)

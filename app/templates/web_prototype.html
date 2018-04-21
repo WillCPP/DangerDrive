@@ -1,48 +1,62 @@
 <html>
-    <head>
-        <title>Place Holder Title</title>
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-        <link href='/static/styles/style.css' type="text/css" rel='stylesheet'>
-        <script src='/static/scripts/script.js' type="text/javascript"></script>
-    </head>
 
-    <body>
-        <div>
-            <p><h1>Danger Drive</h1></p>
-            <p><h3>Starting location</h3></p>
+<head>
+    <title>Danger Drive</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <link href='/static/styles/style.css' type="text/css" rel='stylesheet'>
+    <script src='/static/scripts/script.js' type="text/javascript"></script>
+</head>
+
+<body>
+    <p>
+        <h1>Danger Drive</h1>
+    </p>
+    <form method="POST">
+        <div class="user-input">
+            <p>
+                <h3>Starting location</h3>
+            </p>
+            <div>
                 <div>
-                    <div>
-                      <input type="radio" name="start" id="choice-use-ip" onclick="hide_addr()" required>
-                      <label for="choice-use-ip">Use Current Location</label>
-                    
-                      <div id="loc" class="hide">
+                    <input type="radio" name="radio" value="loc" id="choice-use-ip" onclick="hide_addr()" required>
+                    <label for="choice-use-ip">Use Current Location</label>
+
+                    <div id="loc" class="hide">
                         <p>Estimated location found!</p>
-                      </div>
                     </div>
-                    
-                    <div>
-                      <input type="radio" name="start" id="choice-use-address" onclick="hide_loc()" checked="checked">
-                      <label for="choice-use-address">Enter Address</label>
-                    
-                      <div id="addr" class="">
-                        <form method="POST">
-                            Street: <input type="text" name="street"><br>
-                            City, State, Zip: <input type="text" name=""><br>
-                            <input type="submit" value="Submit">
-                        </form>
-                      </div>
+                </div>
+
+                <div>
+                    <input type="radio" name="radio" value="addr" id="choice-use-address" onclick="hide_loc()" checked="checked">
+                    <label for="choice-use-address">Enter Address</label>
+
+                    <div id="addr" class="">
+                        <!-- <form method="POST"> -->
+                        Street:
+                        <input type="text" name="start_street">
+                        <br> City, State, Zip:
+                        <input type="text" name="start_csz">
+                        <br>
+                        <!-- </form> -->
                     </div>
-                  </div>
+                </div>
             </div>
 
-            <p><h3>Destination</h3></p>
-            <div class="enter address">
-                <form action="/action_page.php">
-                    Street: <input type="text" name="street"><br>
-                    City, State, Zip: <input type="text" name=""><br>
-                    <input type="submit" value="Submit">
-                  </form>
+            <p>
+                <h3>Destination</h3>
+            </p>
+            <div>
+                <!-- <form action="/action_page.php"> -->
+                Street:
+                <input type="text" name="end_street">
+                <br> City, State, Zip:
+                <input type="text" name="end_csz">
+                <br>
+                <input type="submit" value="Submit">
+                <!-- </form> -->
             </div>
         </div>
-    </body>
+    </form>
+</body>
+
 </html>
