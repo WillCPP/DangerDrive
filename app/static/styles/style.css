@@ -4,14 +4,46 @@
     overflow: hidden;
     font-size: 16px;
 }
-
-.user-input {
-    background-color: blueviolet;
+.about {
+  width: 50%;
+  padding-left: 1em;
 }
-  body {
-    font-size: 20px;
-    font-family: 'Trebuchet MS';
-  }
-  * {
+.user-input {
+  padding: 1em;
+  padding-top: 4em;
+}
+.x {
+  padding-left: 3em;
+  width: 100%;
+}
+.dest {
+  padding-left: 3em;
+  width: 100%;
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100%;
+  background-color:rgb(168, 86, 18);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+body {
+  font-size: 18px;
+  font-family: 'Trebuchet MS';
+  display: flex;
+}
+  /* * {
     box-sizing: border-box;
-  }
+  } */
