@@ -40,4 +40,4 @@ def data_post():
     # print(processed_text)
     # return processed_text
     #return dir
-    return render_template('web_prototype_map.html', api_key=key_java, result=dir)
+    return render_template('web_prototype_map.html', api_key=key_java, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1])
