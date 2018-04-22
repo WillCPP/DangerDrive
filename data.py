@@ -93,16 +93,7 @@ class DataReader():
                         self.responeTime +=[self.responeM+self.responeH*60]
                     dead = self.deathby[int(line['HARM_EV'])]
                     self.cood += [{'LATITUDE':float(line['LATITUDE']),'LONGITUD':abs(float(line['LONGITUD'])),'VE_TOTAL':int(line['VE_TOTAL']),'RESPONSE_HOUR':self.responeH,'RESPONSE_MIN':self.responeM,'FATALS':int(line['FATALS']),'HARM_EV':dead}]
-                    #print('Running')
-            #print(data)
-            #print(alldata)
-            #    time = [[row['ST_CASE'], int(row['HOUR']),int(row['MINUTE']), float(row['LATITUDE']),float(row['LONGITUD'])] for row in data]
-                                #print(time)
-                                #print(len(data))
-                                #timing = Counter(time)
-                                #mostOccur = timing.most_common(1)
 
-                                #print(cood)
     def locations(self):
         return self.cood
     def totalCrashes(self):
