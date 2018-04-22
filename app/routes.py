@@ -43,7 +43,13 @@ def data_post():
     markers = ""
     index = 0
     for c in lst:
-        markers += "var m_" + str(index) + """ = new google.maps.Marker({position:{lat: """ + str(c['LATITUDE']) + """, lng: """ + str(c['LONGITUD']) + """}, map: map, title: "hello", icon: "http://maps.google.com/mapfiles/ms/icons/orange.png"});"""
+        markers += "var m_" + str(index) + """ = new google.maps.Marker({position:{lat: """ 
+        markers += str(c['LATITUDE']) + """, lng: """ + str(c['LONGITUD']) 
+        markers += """}, map: map, icon: "http://maps.google.com/mapfiles/ms/icons/orange.png", title: "Crash Type: """ + str(c["HARM_EV"])
+        markers += """| Vehicles: """ + str(c["VE_TOTAL"])
+        markers += """| Fatalities: """ + str(c["FATALS"])
+        markers += """| Amb. Response Time: """ + str(c["RESPONSE_HOUR"]) + ":" + format(c["RESPONSE_MIN"], '02d')
+        markers += """"});"""
     print(lst)
     
     return render_template('web_prototype_map.html', api_key=key_js, markers= markers, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1])
