@@ -50,6 +50,12 @@ def data_post():
         markers += """| Fatalities: """ + str(c["FATALS"])
         markers += """| Amb. Response Time: """ + str(c["RESPONSE_HOUR"]) + ":" + format(c["RESPONSE_MIN"], '02d')
         markers += """"});"""
-    print(lst)
+
+    totalCrashes = dr.totalCrashes()
+    totalFatals = dr.totalFatals()
+    totalWorst = format(dr.worstDriveTime()[0][0], '02d') + ":" + format(dr.worstDriveTime()[0][1], '02d')
+    mostOccur = dr.mostOccur()[0][0]
+    helpTime = dr.helpTime()
     
-    return render_template('web_prototype_map.html', api_key=key_js, markers= markers, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1])
+    return render_template('web_prototype_map.html', api_key=key_js, markers= markers, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1], 
+    totalCrashes=totalCrashes, totalFatals=totalFatals, totalWorst=totalWorst, mostOccur=mostOccur, helpTime=helpTime)
