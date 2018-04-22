@@ -10,11 +10,13 @@ class DataReader():
             self.data = []
             self.time = []
             self.danger = []
+            self.deaths = 0
             self.cood = []
-            self.loMin = -abs(loMin)
-            self.loMax = -abs(loMax)
-            self.laMax = laMax
-            self.laMin = laMin
+            self.loMin = -abs(loMin)-1/56
+            self.loMax = -abs(loMax)-1/56
+            self.laMax = laMax+1/69
+            self.laMin = laMin+1/69
+            self.responeTime = []
             self.deathby = {
             1 : 'Overturn',
             2 : 'Fire/Explosion',
@@ -77,9 +79,10 @@ class DataReader():
                 if(float(line['LATITUDE']) >=laMin and float(line['LATITUDE']) <=laMax and float(line['LONGITUD']) >=loMin and float(line['LONGITUD']) <=loMax):
                     self.data += [line]
                     self.time += [int(line['HOUR'])]
-                    self.danger += [int(line['HARM_EV'])]
+                    self.danger += [self.deathby[int(line['HARM_EV'])]]
                     self.responeH = -1
                     self.responeM = -1
+                    self.deaths += int(line['FATALS'])
                     if int(line['ARR_HOUR'])<25 and int(line['HOUR'])<25 and int(line['ARR_MIN'])<61 and int(line['MINUTE'])<61:
                         self.responeH = int(line['ARR_HOUR'])-int(line['HOUR'])
                         self.responeM = int(line['ARR_MIN'])-int(line['HOUR'])
@@ -87,17 +90,27 @@ class DataReader():
                             self.responeH = 24 + self.responeH
                         if  self.responeM < 0:
                             self.responeM = 60 + self.responeM
+                        self.responeTime +=[self.responeM+self.responeH*60]
                     dead = self.deathby[int(line['HARM_EV'])]
-                    self.cood += [{'LATITUDE':float(line['LATITUDE']),'LONGITUD':float(line['LONGITUD']),'VE_TOTAL':int(line['VE_TOTAL']),'RESPONSE_HOUR':self.responeH,'RESPONSE_MIN':self.responeM,'FATALS':int(line['FATALS']),'HARM_EV':dead}]
-                    #print('Running')
-            #print(data)
-            #print(alldata)
-            #    time = [[row['ST_CASE'], int(row['HOUR']),int(row['MINUTE']), float(row['LATITUDE']),float(row['LONGITUD'])] for row in data]
-                                #print(time)
-                                #print(len(data))
-                                #timing = Counter(time)
-                                #mostOccur = timing.most_common(1)
-                                #print(mostOccur)
-                                #print(cood)
+                    self.cood += [{'LATITUDE':float(line['LATITUDE']),'LONGITUD':abs(float(line['LONGITUD'])),'VE_TOTAL':int(line['VE_TOTAL']),'RESPONSE_HOUR':self.responeH,'RESPONSE_MIN':self.responeM,'FATALS':int(line['FATALS']),'HARM_EV':dead}]
+
     def locations(self):
         return self.cood
+    def totalCrashes(self):
+        return len(self.data)
+    def totalFatals(self):
+        return self.deaths
+    def worstDriveTime(self):
+        timing = Counter(self.time)
+        mostOccur = timing.most_common(1)
+        return mostOccur
+    def mostOccur(self):
+        crash = Counter(self.danger)
+        mostOccur = crash.most_common(1)
+        return mostOccur
+    def helpTime(self):
+        avg = 0
+        for time in self.responeTime:
+            avg +=time
+        avg=avg//len(self.responeTime)
+        return avg
