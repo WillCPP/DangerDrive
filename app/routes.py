@@ -5,16 +5,12 @@ from app import app
 import Website
 import directions
 import find_locations
-from keys import key_java
+from data import *
+from keys import key_js
 
 @app.route('/')
 @app.route('/index')
 def index():
-    #latlong = find_locations.find_ip()
-
-    #render template for input page
-    #custom render for output page
-    #return Website.one + Website.two + """Lat: """ + str(latlong[0]) + """ Lng: """ + str(latlong[1]) + Website.three
     return render_template('web_prototype.html')
 
 @app.route('/', methods=['POST'])
@@ -35,8 +31,19 @@ def data_post():
 
     dir = directions.directions(start_latlong[0], start_latlong[1], end_latlong[0], end_latlong[1])
 
-    # processed_text = start_street.upper()
-    # print(processed_text)
-    # return processed_text
-    #return dir
-    return render_template('web_prototype_map.html', api_key=key_java, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1])
+    #get data here
+    laMax = max(start_latlong[0], end_latlong[0])
+    laMin = min(start_latlong[0], end_latlong[0])
+    loMax = max(start_latlong[1], end_latlong[1])
+    loMin = min(start_latlong[1], end_latlong[1])
+
+    dr = DataReader(laMax, laMin, loMin, loMax)
+    lst = dr.locations()
+
+    markers = ""
+    index = 0
+    for c in lst:
+        markers += "var m_" + str(index) + """ = new google.maps.Marker({position:{lat: """ + str(c['LATITUDE']) + """, lng: """ + str(c['LONGITUD']) + """}, map: map, title: "hello", icon: "http://maps.google.com/mapfiles/ms/icons/orange.png"});"""
+    print(lst)
+    
+    return render_template('web_prototype_map.html', api_key=key_js, markers= markers, start_lat=start_latlong[0], start_lng=start_latlong[1], end_lat=end_latlong[0], end_lng=end_latlong[1])
