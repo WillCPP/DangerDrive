@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <link href='/static/styles/style_out.css' type="text/css" rel='stylesheet'>
+    <style>
+        #map {
+            height: 50%;
+            width: 100%;
+        }
+    </style>
+
+<script>
+    function initMap() {
+        directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: chicago
+        });
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+    }
+    function calcRoute() {
+        var start = new google.maps.LatLng({{ start_lat }}, {{ start_lng }});
+        var end = new google.maps.LatLng({{ end_lat }}, {{ end_lng }});
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING'
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == 'OK') {
+                directionsDisplay.setDirections(response);
+            }
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
+</script>
+
+</head>
+
+<body onload="calcRoute()">
+    <div class="about">
+        <div class="logo">
+            <img src="static/images/Logo1.png" alt="logo" width="100%" height="20%">
+        </div>
+    </div>
+    <p></p>
+    <!-- <div id="map"></div>     -->
+    <div id="map" style="float:left;width:50%;height:50%;padding:1em"></div>
+    <div id="directionsPanel" style="float:left;width:50%;height:100%;padding:1em;"></div>
+</body>
+
+</html>
