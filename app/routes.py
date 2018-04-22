@@ -5,6 +5,7 @@ from app import app
 import Website
 import directions
 import find_locations
+from keys import key_java
 
 @app.route('/')
 @app.route('/index')
@@ -38,4 +39,5 @@ def data_post():
     # processed_text = start_street.upper()
     # print(processed_text)
     # return processed_text
-    return render_template('web_prototype_map.html')
+    #return dir
+    return render_template('web_prototype_map.html', api_key=key_java, result=dir)
