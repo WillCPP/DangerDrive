@@ -9,7 +9,6 @@ from keys import key_java
 
 @app.route('/')
 @app.route('/index')
-
 def index():
     #latlong = find_locations.find_ip()
 
@@ -19,7 +18,7 @@ def index():
     return render_template('web_prototype.html')
 
 @app.route('/', methods=['POST'])
-#@app.route('/index', methods=['POST'])
+@app.route('/index', methods=['POST'])
 def data_post():
     radio = request.form['radio']
 
