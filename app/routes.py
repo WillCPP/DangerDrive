@@ -27,8 +27,6 @@ def data_post():
     end_csz = request.form['end_csz']
     end_latlong = find_locations.find_address(end_street + " " + end_csz)
 
-    dir = directions.directions(start_latlong[0], start_latlong[1], end_latlong[0], end_latlong[1])
-
     #get data here
     laMax = max(start_latlong[0], end_latlong[0])
     laMin = min(start_latlong[0], end_latlong[0])
