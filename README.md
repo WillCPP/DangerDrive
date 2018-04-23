@@ -26,5 +26,8 @@ flask run
 ```
 You may have to use pip3 instead of pip.
 
+## Usage
+Navigate to the address specified by flask (It's probably http://127.0.0.1:5000/).
+
 ## IMPORTANT NOTE!!!
 This repository does not include our API keys!  The code submitted with our report has the API keys included.
