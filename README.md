@@ -9,7 +9,7 @@ Clone this repository.
 Run the following terminal commands.
 ```
 pip install pipenv
-pipenv shell --three```
+pipenv shell --three
 pipenv install
 export FLASK_APP=DangerDrive.py
 flask run
