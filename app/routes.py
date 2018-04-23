@@ -2,8 +2,6 @@ import requests
 import json
 from flask import Flask, request, render_template
 from app import app
-import Website
-import directions
 import find_locations
 from data import *
 from keys import key_js
