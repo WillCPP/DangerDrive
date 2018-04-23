@@ -4,8 +4,9 @@ To run, be sure to use python 3 and make sure Flask and Requests are installed.
 
 There is a Pipfile included if you wish to use pipenv.
 
-## To Run using pipenv
+## To Run using pipenv (Tested on Linux and Windows)
 Clone this repository.
+Navigate into the project directory.
 Run the following terminal commands.
 ```
 pip install pipenv
@@ -17,6 +18,7 @@ flask run
 
 ## To Run without pipenv
 Clone this repository.
+Navigate into the project directory.
 Run the following terminal commands.
 ```
 pip install flask
