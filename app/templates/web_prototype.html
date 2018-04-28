@@ -2,65 +2,80 @@
 
 <head>
     <title>Danger Drive</title>
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <link href='static/styles/style.css' type="text/css" rel='stylesheet'>
-    <script src='static/scripts/script.js' type="text/javascript"></script>
+    <link href="static/styles/latolatinfonts.css" rel="stylesheet" type="text/css">
+    <link href="static/styles/latostyle.css" rel="stylesheet" type="text/css">
+    <link href="static/styles/dist/spectre.css" type="text/css" rel="stylesheet">
+    <link href="static/styles/style.css" type="text/css" rel="stylesheet">
+    <script src="static/scripts/script.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <div class="about">
-        <div class="logo">
-            <img src="static/images/Logo1.png" alt="logo" width="100%" height="30%">
-        </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-12 col-md-12">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column col-6 col-md-12" style="padding: 1em">
+                            <img class="img-responsive" src="static/images/Logo1.png" alt="logo" width="100%" height="30%">
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column col-6 col-md-12" style="padding: 1em">
+                            <p>
+                                Welcome to Danger Drive! This tool is designed to show you the dangers you may encounter on your commute. From car accidents
+                                to ambulance response time, we will show you all the information you need to know in order
+                                for you to be more safe and informed on the road.
+                            </p>
+                        </div>
+                        <div class="column col-6 col-md-12">
+                            <form method="POST">
+                                <div class="user-input">
+                                    <p>
+                                        <h3>Starting location</h3>
+                                    </p>
+                                    <div>
+                                        <div>
+                                            <input type="radio" name="radio" value="loc" id="choice-use-ip" onclick="hide_addr()" required>
+                                            <label for="choice-use-ip">Use Current Location</label>
 
-        <p>
-            Welcome to Danger Drive! This tool is designed to show you the dangers you may encounter on your commute. From car accidents
-            to ambulance response time, we will show you all the information you need to know in order for you to be more
-            safe and informed on the road.
-        </p>
+                                            <div id="loc" class="hide">
+                                                <p>Using estimated location.</p>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" name="radio" value="addr" id="choice-use-address" onclick="hide_loc()" checked="checked">
+                                            <label for="choice-use-address">Enter Address</label>
+
+                                            <div id="addr" class="">
+                                                Street:
+                                                <input type="text" name="start_street">
+                                                <br> City, State, Zip:
+                                                <input type="text" name="start_csz">
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p>
+                                        <h3>Destination</h3>
+                                    </p>
+                                    <div>
+                                        Street:
+                                        <input type="text" name="end_street">
+                                        <br> City, State, Zip:
+                                        <input type="text" name="end_csz">
+                                        <br>
+                                        <input type="submit" value="Submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <form method="POST">
-        <div class="user-input">
-            <p>
-                <h3>Starting location</h3>
-            </p>
-            <div>
-                <div>
-                    <input type="radio" name="radio" value="loc" id="choice-use-ip" onclick="hide_addr()" required>
-                    <label for="choice-use-ip">Use Current Location</label>
-
-                    <div id="loc" class="hide">
-                        <p>Estimated location found!</p>
-                    </div>
-                </div>
-
-                <div>
-                    <input type="radio" name="radio" value="addr" id="choice-use-address" onclick="hide_loc()" checked="checked">
-                    <label for="choice-use-address">Enter Address</label>
-
-                    <div id="addr" class="x">
-                        Street:
-                        <input type="text" name="start_street">
-                        <br> City, State, Zip:
-                        <input type="text" name="start_csz">
-                        <br>
-                    </div>
-                </div>
-            </div>
-
-            <p>
-                <h3>Destination</h3>
-            </p>
-            <div class="dest">
-                Street:
-                <input type="text" name="end_street">
-                <br> City, State, Zip:
-                <input type="text" name="end_csz">
-                <br>
-                <input type="submit" value="Submit">
-            </div>
-        </div>
-    </form>
 </body>
 
 </html>

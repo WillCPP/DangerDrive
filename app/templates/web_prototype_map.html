@@ -1,7 +1,10 @@
 <html>
 
 <head>
-    <link href='/static/styles/style_out.css' type="text/css" rel='stylesheet'>
+    <link href="static/styles/latolatinfonts.css" rel="stylesheet" type="text/css">
+    <link href="static/styles/latostyle.css" rel="stylesheet" type="text/css">
+    <!-- <link href="static/styles/dist/spectre.css" type="text/css" rel="stylesheet"> -->
+    <link href="static/styles/style.css" type="text/css" rel="stylesheet">
     <style>
         #map {
             height: 50%;
@@ -9,55 +12,81 @@
         }
     </style>
 
-<script>
-    function initMap() {
-        directionsService = new google.maps.DirectionsService();
-        directionsDisplay = new google.maps.DirectionsRenderer();
-        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: chicago
-        });
-        directionsDisplay.setMap(map);
-        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
-        {{markers | safe}}
-    }
-    function calcRoute() {
-        var start = new google.maps.LatLng({{ start_lat }}, {{ start_lng }});
-        var end = new google.maps.LatLng({{ end_lat }}, {{ end_lng }});
-        var request = {
-            origin: start,
-            destination: end,
-            travelMode: 'DRIVING'
+    <script>
+        function initMap() {
+            console.log("hello1");
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: chicago
+            });
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+            {{ markers | safe }}
+        }
+        function calcRoute() {
+            console.log("hello2");
+            var start = new google.maps.LatLng({{ start_lat }}, {{ start_lng }});
+            var end = new google.maps.LatLng({{ end_lat }}, {{ end_lng }});
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: 'DRIVING'
         };
         directionsService.route(request, function (response, status) {
+            console.log("hello3");
             if (status == 'OK') {
                 directionsDisplay.setDirections(response);
             }
         });
     }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
-</script>
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
+    </script>
 
 </head>
 
 <body onload="calcRoute()">
-    <div class="about">
-        <div class="logo">
-            <img src="static/images/Logo1.png" alt="logo" width="100%" height="20%">
+
+
+    <div class="container">
+        <div class="columns">
+            <div class="column col-6 col-md-12" style="padding: 1em">
+                <img class="img-responsive" src="static/images/Logo1.png" alt="logo" width="100%" height="30%">
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="col-6 col-md-12" style="padding: 1em">
+                <p>Hover mouse over markers to see more information about the crashes.</p>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="col-6 col-md-12" style="height:200px;width:200px;">
+                    <!-- <div id="map" style="float:left;width:100%; height:100%"></div> -->
+            </div>
+            <div class="col-6 col-md-12" style="padding: 1em">
+                <p>Total Crashes: {{ totalCrashes }}</p>
+                <p>Total Fatalities: {{ totalFatals }}</p>
+                <p>Worst Time to Drive: {{ totalWorst }}</p>
+                <p>Most Occured Crash Type: {{ mostOccur }}</p>
+                <p>Average Ambulance Response Time: {{ helpTime }} min</p>
+            </div>
+        </div>
+
+        <div class="columns">
+                <!-- <div id="directionsPanel" style="float:right;width:30%;height:100%"></div> -->
         </div>
     </div>
-    <p>Hover mouse over markers to see more information about the crashes.</p>
-    <div id="map" style="width:50%;height:50%;padding:1em"></div>
-    <div style="padding:1em">
-        <p>Total Crashes: {{ totalCrashes }}</p>
-        <p>Total Fatalities: {{ totalFatals }}</p>
-        <p>Worst Time to Drive: {{ totalWorst }}</p>
-        <p>Most Occured Crash Type: {{ mostOccur }}</p>
-        <p>Average Ambulance Response Time: {{ helpTime }} min</p>
+
+    <div style="height: 500px; width: 500px">
+        <div id="map" style="float:left;width:100%; height:100%"></div>
+        <div id="directionsPanel" style="float:right;width:30%;height:100%"></div>
     </div>
-    <div id="directionsPanel" style="width:50%;height:100%;padding:1em;"></div>
+    
 </body>
 
 </html>
