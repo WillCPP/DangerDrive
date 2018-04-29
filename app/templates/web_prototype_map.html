@@ -1,33 +1,26 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <link href="static/styles/latolatinfonts.css" rel="stylesheet" type="text/css">
     <link href="static/styles/latostyle.css" rel="stylesheet" type="text/css">
-    <!-- <link href="static/styles/dist/spectre.css" type="text/css" rel="stylesheet"> -->
+    <link href="static/styles/dist/spectre.css" type="text/css" rel="stylesheet">
     <link href="static/styles/style.css" type="text/css" rel="stylesheet">
-    <style>
-        #map {
-            height: 50%;
-            width: 100%;
-        }
-    </style>
-
     <script>
         function initMap() {
-            console.log("hello1");
             directionsService = new google.maps.DirectionsService();
             directionsDisplay = new google.maps.DirectionsRenderer();
             var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+            var mapOptions = {
+                zoom: 7,
                 center: chicago
-            });
+            }
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
             directionsDisplay.setMap(map);
             directionsDisplay.setPanel(document.getElementById('directionsPanel'));
             {{ markers | safe }}
         }
         function calcRoute() {
-            console.log("hello2");
             var start = new google.maps.LatLng({{ start_lat }}, {{ start_lng }});
             var end = new google.maps.LatLng({{ end_lat }}, {{ end_lng }});
             var request = {
@@ -36,7 +29,7 @@
                 travelMode: 'DRIVING'
         };
         directionsService.route(request, function (response, status) {
-            console.log("hello3");
+            console.log(response);
             if (status == 'OK') {
                 directionsDisplay.setDirections(response);
             }
@@ -66,7 +59,7 @@
 
         <div class="columns">
             <div class="col-6 col-md-12" style="height:200px;width:200px;">
-                    <!-- <div id="map" style="float:left;width:100%; height:100%"></div> -->
+                    <div id="map" style="float:left;width:100%; height:100%"></div>
             </div>
             <div class="col-6 col-md-12" style="padding: 1em">
                 <p>Total Crashes: {{ totalCrashes }}</p>
@@ -78,14 +71,14 @@
         </div>
 
         <div class="columns">
-                <!-- <div id="directionsPanel" style="float:right;width:30%;height:100%"></div> -->
+            <div class="column col-12">
+                <div id="directionsPanel" style="float:right;width:100%;height:100%"></div>
+            </div>
         </div>
     </div>
 
-    <div style="height: 500px; width: 500px">
-        <div id="map" style="float:left;width:100%; height:100%"></div>
-        <div id="directionsPanel" style="float:right;width:30%;height:100%"></div>
-    </div>
+    <!-- <div id="map" style="float:left;width:70%; height:100%"></div>
+    <div id="directionsPanel" style="float:right;width:30%;height: 100%"></div> -->
     
 </body>
 

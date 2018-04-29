@@ -25,14 +25,4 @@ input[type=submit] {
 body {
   font-family: 'LatoLatinWeb';
   font-size: 1em;
-  /* height: 100%;
-  width: 100%; */
-}
-/* .map-util {
-  height: 100%;
-  width: 100%;
-} */
-
-#map * {
-  overflow: visible;
 }
