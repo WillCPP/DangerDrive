@@ -26,3 +26,6 @@ body {
   font-family: 'LatoLatinWeb';
   font-size: 1em;
 }
+#map {
+  height: 100%;
+}
